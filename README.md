@@ -1,0 +1,2 @@
+## About this project
+This project implements a software renderer for Windows, but not making use of the C runtime or any import libraries (just for fun). In order to implement this, the [phnt](https://github.com/processhacker/processhacker/tree/master/phnt) headers from [Process Hacker 2](https://github.com/processhacker/processhacker) are used for the proper definitions of the internal structures required. Ubisoft's [Sharpmake](https://github.com/ubisoft/Sharpmake) is used as a build system, and for convenience is included in the [`deps/sharpmake`](deps/sharpmake) folder

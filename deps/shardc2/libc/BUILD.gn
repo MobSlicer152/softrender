@@ -1,0 +1,101 @@
+#  Target definition of the main library
+#
+#  Copyright 2021 MobSlicer152
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+static_library("crt0") {
+  include_dirs = [
+    "//deps/include",
+    "include",
+  ]
+
+  sources = [ "src/misc/stubs.c" ]
+
+  if (is_win) {
+    sources += [ "src/win32/startup/crt0.c", "src/win32/startup/globals.c" ]
+  } else if (is_linux) {
+    sources += [ "src/linux/startup/x86_64/crt0.S" ]
+  }
+
+  if (current_cpu == "x64") {
+    if (is_win) {
+      sources += [ "src/misc/x86_64/stubs.asm" ]
+    } else if (is_linux) {
+      sources += [ "src/linux/x86_64/crt0.S" ]
+    }
+  }
+}
+
+shared_library("c") {
+  include_dirs = [
+    "//deps/include",
+    "include",
+  ]
+  defines = [ "_LIBC_BUILD" ]
+  ldflags = []
+
+  sources = [
+    "include/internal/compiler_fixups.h",
+    "include/internal/crt0.h",
+    "include/stdlib.h",
+    "include/string.h",
+    "include/wchar.h",
+    "src/misc/stubs.c",
+    "src/stdlib/convert.c",
+    "src/stdlib/exit.c",
+    "src/stdlib/mem.c",
+    "src/stdlib/search.c",
+    "src/string/compare.c",
+    "src/string/mem.c",
+    "src/string/misc.c",
+    "src/wchar/case.c",
+    "src/wchar/compare.c",
+    "src/wchar/misc.c",
+  ]
+
+  if (is_win) {
+    sources += [
+      "include/internal/win32/defs.h",
+      "include/internal/win32/ldr.h",
+      "src/win32/startup/dllmain.c",
+      "src/win32/startup/globals.c",
+      "src/win32/misc/ldr.c",
+      "src/win32/misc/libc.rc",
+      "src/win32/misc/resource.h",
+      "src/win32/stdlib/exit.c",
+      "src/win32/stdlib/mem.c",
+    ]
+  } else if (is_linux) {
+    sources += [ "src/linux/startup/init.c" ]
+  }
+
+  if (current_cpu == "x64") {
+    defines += [ "_X86_64" ]
+    sources += [ "src/stdlib/x86_64/cpu.c" ]
+
+    if (is_win) {
+      sources += [
+        #"include/internal/win32/asmdefs.asm",
+        "src/misc/x86_64/stubs.asm",
+        "src/stdlib/x86_64/cpuid.asm",
+        "src/string/x86_64/memset.asm",
+      ]
+    } else if (is_linux) {
+      sources += [
+        "src/stdlib/x86_64/cpuid.S",
+        "src/string/x86_64/memset.S",
+      ]
+    }
+  }
+}

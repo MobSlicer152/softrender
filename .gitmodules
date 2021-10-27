@@ -1,0 +1,3 @@
+[submodule "deps/shardc2"]
+	path = deps/shardc2
+	url = https://github.com/mobslicer152/shardc2
