@@ -5,6 +5,9 @@
 		"ldr.h": "c",
 		"compiler_fixups.h": "c",
 		"platform.h": "c",
-		"phnt_windows.h": "c"
+		"phnt_windows.h": "c",
+		"windowsx.h": "c",
+		"windows.h": "c",
+		"winuser.h": "c"
 	}
 }

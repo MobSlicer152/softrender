@@ -27,7 +27,7 @@
 #include "internal/win32/ldr.h"
 
 // Native window type
-typedef HWND native_window_t;
+typedef void *native_window_t;
 
 // Instance handle, Win32 functions need this
 HINSTANCE instance_handle;
@@ -37,7 +37,4 @@ extern void *user32_base;
 
 // Win32 function pointers
 extern void *(*GetModuleHandleA_l)(const int8_t *module_name);
-
-// Load Win32 functions
-extern bool load_win32_funcs(struct context *ctx);
 #endif // _WIN32

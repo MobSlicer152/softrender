@@ -29,3 +29,14 @@ struct context {
 	bool win32_funcs_loaded;
 #endif
 };
+
+// Initialize a context
+extern bool context_init(struct context *ctx);
+
+// Platform-specific initialization
+extern bool context_platform_init(struct context *ctx);
+
+#ifdef _WIN32
+// Load Win32 functions
+extern bool load_win32_funcs(struct context *ctx);
+#endif // _WIN32

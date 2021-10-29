@@ -22,7 +22,7 @@
 
 // Structure to store details of a window
 struct window {
-	native_window_t window; // A window
+	native_window_t handle; // Native window handle
 	struct string *title; // Window title
 	struct vec2i pos; // Window position
 	struct vec2i size; // Window size

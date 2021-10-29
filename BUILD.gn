@@ -22,14 +22,14 @@ executable("softrender") {
   ]
 
   sources = [
-    "include/main.h",
+    "include/context.h",
     "include/platform.h",
     "include/types.h",
     "include/window.h",
     "src/main.c",
     "src/typefuncs.c",
+    "src/win32/context.c",
     "src/win32/globals.c",
-    "src/win32/util.c",
     "src/win32/window.c",
   ]
 
