@@ -1,4 +1,4 @@
-// Definitions for main.c
+// Windows global variables
 //
 // Copyright 2021 MobSlicer152
 // This file is part of Shard C Library 2
@@ -15,11 +15,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#pragma once
+#include "platform.h"
+#include "types.h"
 
-#include "window.h"
+void *user32_base = 0;
 
-// Structure containing information about a context
-struct context {
-	struct window *wnd; // Main window
-};
+void *(*GetModuleHandleA_l)(const int8_t *module_name);
+
+HINSTANCE instance_handle;

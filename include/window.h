@@ -45,3 +45,6 @@ extern void set_window_title(const struct window *wnd, const struct string *titl
 // Set a window's position and size
 extern void set_window_size(const struct window *wnd, struct vec2i pos,
 			struct vec2i size);
+
+// Close a window
+extern void close_window(struct window *wnd);

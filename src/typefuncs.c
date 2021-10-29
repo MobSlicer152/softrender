@@ -31,12 +31,12 @@ struct string *make_string(const int8_t *src, size_t max_opt)
 
 struct wstring *make_wstring(const wchar_t *src, size_t max_opt)
 {
-	struct string *str;
+	struct wstring *str;
 
-	str = calloc(1, sizeof(struct string));
+	str = calloc(1, sizeof(struct wstring));
 	str->len = wcslen(src);
 	str->max_len = max_opt ? max_opt : str->len;
-	str->buf = calloc(str->max_len, sizeof(int8_t));
+	str->buf = calloc(str->max_len, sizeof(wchar_t));
 
 	return str;
 }

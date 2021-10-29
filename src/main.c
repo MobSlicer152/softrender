@@ -16,7 +16,11 @@
 // limitations under the License.
 
 #include <stdlib.h>
-#include "main.h"
+
+#include "context.h"
+#include "platform.h"
+#include "types.h"
+#include "window.h"
 
 int main(int argc, char *argv[])
 {

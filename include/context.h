@@ -1,4 +1,4 @@
-// Windows utility functions
+// Definitions for contexts
 //
 // Copyright 2021 MobSlicer152
 // This file is part of Shard C Library 2
@@ -15,16 +15,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "platform.h"
+#pragma once
 
-bool load_win32_funcs(struct context *ctx)
-{
-	// Load DLLs
-	__LdrLoadDll(NULL, NULL,
-		     &(UNICODE_STRING)RTL_CONSTANT_STRING(L"user32.dll"),
-		     &user32_base);
+#include "types.h"
+#include "window.h"
 
-	// Load functions pointers
-	GetModuleHandleA_l = __load_symbol(
-		user32_base, __get_export_dir(user32_base), "GetModuleHandleA");
-}
+// Structure containing information about a context
+struct context {
+	struct window *wnd; // Main window
+	
+#ifdef _WIN32
+	// Whether the Win32 functions are safe to use yet
+	bool win32_funcs_loaded;
+#endif
+};

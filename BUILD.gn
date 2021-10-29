@@ -28,6 +28,9 @@ executable("softrender") {
     "include/window.h",
     "src/main.c",
     "src/typefuncs.c",
+    "src/win32/globals.c",
+    "src/win32/util.c",
+    "src/win32/window.c",
   ]
 
   deps = [

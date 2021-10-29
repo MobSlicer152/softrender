@@ -1,5 +1,10 @@
 {
 	"files.associations": {
-		"float.h": "c"
+		"float.h": "c",
+		"types.h": "c",
+		"ldr.h": "c",
+		"compiler_fixups.h": "c",
+		"platform.h": "c",
+		"phnt_windows.h": "c"
 	}
 }
